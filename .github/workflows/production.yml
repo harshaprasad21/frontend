@@ -1,0 +1,39 @@
+name: Deploy to AWS Elastic Beanstalk
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Verify Build Output
+        run: |
+          # List contents of dist directory for verification
+          ls -la .
+
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@v0.1.7
+        with:
+           host: ${{ secrets.SERVER_IP }}
+           username: ${{ secrets.USER }}
+           key: ${{ secrets.SSH_PRIVATE_KEY }}
+           source: "./"
+           target: "/var/www/server"
+      
