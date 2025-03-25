@@ -35,5 +35,5 @@ jobs:
            username: ${{ secrets.USER }}
            key: ${{ secrets.SSH_PRIVATE_KEY }}
            source: "./"
-           target: "/var/www/server"
+           target: "/var/www/web"
       
