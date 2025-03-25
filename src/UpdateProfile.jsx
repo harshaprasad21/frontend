@@ -56,7 +56,7 @@ const handleSubmit=async(e)=>{
       }); 
     }
     try {
-      const response=await axios.put(`https://api.cloudchampion.online/update/${userID}`,data,{headers:{'Content-Type': 'application/json'},withCredentials: true});
+      const response=await axios.put(`https://ip-10-0-139-53.us-east-2.compute.internal/update/${userID}`,data,{headers:{'Content-Type': 'application/json'},withCredentials: true});
       console.log(response);
       await dispatch(setUserData({...response.data.updatedUser}));
       toast.success('Profile Updated successful', {
@@ -98,7 +98,7 @@ const handleSubmit=async(e)=>{
     const formData = new FormData();
     formData.append('file', file);
     try {
-      let uploadedUrl='https://api.cloudchampion.online/upload';
+      let uploadedUrl='https://ip-10-0-139-53.us-east-2.compute.internal/upload';
       if(s3UserId){
         uploadedUrl += `/${s3UserId}`
       }
