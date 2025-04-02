@@ -27,7 +27,7 @@ const UserProfilePage = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://ip-10-0-139-53.us-east-2.compute.internal/get-upload-image?userId=${userData?._id}`,
+          `internal-APP-ASG-LB-2017550769.us-east-2.elb.amazonaws.com/get-upload-image?userId=${userData?._id}`,
           {
             headers: {
               "Content-Type": "multipart/form-data",
@@ -60,7 +60,7 @@ const UserProfilePage = () => {
     formData.append("file", file);
     try {
       const response = await axios.post(
-        `https://ip-10-0-139-53.us-east-2.compute.internal/upload-s3-image?userId=${userData?._id}`,
+        `internal-APP-ASG-LB-2017550769.us-east-2.elb.amazonaws.com/upload-s3-image?userId=${userData?._id}`,
         formData,
         {
           headers: {
@@ -101,7 +101,7 @@ const UserProfilePage = () => {
 
   const handleLogout=async(e)=>{
     e.preventDefault();
-    const logoutRes=await axios.post('https://ip-10-0-139-53.us-east-2.compute.internal/logout',{headers:{'Content-Type': 'application/json'},withCredentials:true});
+    const logoutRes=await axios.post('internal-APP-ASG-LB-2017550769.us-east-2.elb.amazonaws.com/logout',{headers:{'Content-Type': 'application/json'},withCredentials:true});
     dispatch(doLogout());
     toast.success('Logout successful', {
       position: "top-right",

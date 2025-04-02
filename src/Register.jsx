@@ -36,7 +36,7 @@ const Register = () => {
         }); 
     }
     try {
-      const response=await axios.post('https://ip-10-0-139-53.us-east-2.compute.internal/register',data,{headers:{'Content-Type': 'application/json'}});
+      const response=await axios.post('internal-APP-ASG-LB-2017550769.us-east-2.elb.amazonaws.com',data,{headers:{'Content-Type': 'application/json'}});
       await dispatch(setUserData({...response.data.user}));
       await dispatch(removeS3Url());
         toast.success('Registration successful', {

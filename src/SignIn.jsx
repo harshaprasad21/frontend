@@ -17,7 +17,7 @@ const SignIn = () => {
   const handleSubmit=async(e)=>{
     e.preventDefault();
     try {
-      const response=await axios.post('https://ip-10-0-139-53.us-east-2.compute.internal/login',data,{headers:{'Content-Type': 'application/json'},withCredentials: true});
+      const response=await axios.post('internal-APP-ASG-LB-2017550769.us-east-2.elb.amazonaws.com/login',data,{headers:{'Content-Type': 'application/json'},withCredentials: true});
       toast.success('Login successful', {
         position: "top-right",
         autoClose: 4000,
@@ -30,9 +30,9 @@ const SignIn = () => {
         transition: Bounce,
         });
         const userRefId=response?.data?.userdata?._id;
-      const getS3Url=await axios.get(`https://ip-10-0-139-53.us-east-2.compute.internal/getS3Url?userRefId=${userRefId}`,{headers:{'Content-Type': 'application/json'}});
+      const getS3Url=await axios.get(`internal-APP-ASG-LB-2017550769.us-east-2.elb.amazonaws.com/getS3Url?userRefId=${userRefId}`,{headers:{'Content-Type': 'application/json'}});
       await dispatch(setS3Url({...getS3Url.data[0]}))
-      const getUserData=await axios.get(`https://ip-10-0-139-53.us-east-2.compute.internal/getUserData?userId=${userRefId}`,{headers:{'Content-Type': 'application/json'}});
+      const getUserData=await axios.get(`internal-APP-ASG-LB-2017550769.us-east-2.elb.amazonaws.com/getUserData?userId=${userRefId}`,{headers:{'Content-Type': 'application/json'}});
       dispatch(setUserData({...getUserData.data.user}))
       // console.log(getUserData);
       setTimeout(() => {
